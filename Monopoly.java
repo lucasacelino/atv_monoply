@@ -50,6 +50,8 @@ public class Monopoly {
 
             if (comando.equalsIgnoreCase("jogar")) {
                 jogar(jogador);
+            } else if (comando.equalsIgnoreCase("status")) {
+                exibirStatusJogo();
             } else if (comando.equalsIgnoreCase("sair")) {
                 System.out.println("Saindo do jogo...");
                 break;
@@ -70,6 +72,29 @@ public class Monopoly {
         }
     }
 
+    public void exibirStatusJogo() {
+        System.out.println("\n--- Status do Jogo ---");
+    
+        System.out.println("\n### Jogadores:");
+        for (Jogador jogador : jogadores) {
+            System.out.println("Nome: " + jogador.getNome());
+            System.out.println("Saldo: $" + jogador.getDinheiro());
+            System.out.println("Posição: " + jogador.getPosicao() + " - " + tabuleiro.getEspaco(jogador.getPosicao()).getNome());
+            System.out.println("Propriedades: " + jogador.getPropriedades());
+            System.out.println();
+        }
+    
+        System.out.println("\n### Tabuleiro:");
+        for (int i = 0; i < tabuleiro.getEspacos().size(); i++) {
+            Espaco espaco = tabuleiro.getEspaco(i);
+            System.out.print("Posição " + i + ": ");
+            espaco.exibirInformacoes(); 
+            System.out.println();
+        }
+    
+        System.out.println("\n### Turno Atual: " + jogadores.get(jogadorAtual).getNome());
+    }
+
     private void jogar(Jogador jogador) {
         int dado1 = (int) (Math.random() * 6) + 1;
         int dado2 = (int) (Math.random() * 6) + 1;
@@ -80,7 +105,7 @@ public class Monopoly {
         jogador.mover(passos);
         Espaco espacoAtual = tabuleiro.getEspaco(jogador.getPosicao());
         System.out.println(jogador.getNome() + " caiu em " + espacoAtual.getNome() + ".");
-        espacoAtual.acao(jogador, scanner); // Passa o Scanner para o método acao
+        espacoAtual.acao(jogador, scanner); 
     }
 
     private String escolherCorPeao(int numeroJogador) {
@@ -95,7 +120,6 @@ public class Monopoly {
             System.out.print("\n: ");
             corEscolhida = scanner.nextLine().toLowerCase();
 
-            // Verificar se a cor escolhida é válida
             for (String cor : coresDisponiveis) {
                 if (cor.equals(corEscolhida)) {
                     return corEscolhida;

@@ -20,7 +20,7 @@ public class Ferrovia extends Espaco implements Compravel, Alugavel {
             }
         } else if (dono != jogador) {
             int aluguel = calcularAluguel(jogador);
-            System.out.println(jogador.getNome() + ", você deve pagar $" + aluguel + " de aluguel para " + dono.getNome() + ".");
+            System.out.println(jogador.getNome() + ", você pagou $" + aluguel + " de aluguel para " + dono.getNome() + ".");
             jogador.pagar(aluguel);
             dono.receber(aluguel);
         }
@@ -47,5 +47,15 @@ public class Ferrovia extends Espaco implements Compravel, Alugavel {
     @Override
     public Jogador getDono() {
         return dono;
+    }
+
+    @Override
+    public void exibirInformacoes() {
+        System.out.print("Ferrovia: " + getNome());
+        if (getDono() != null) {
+            System.out.print(" (Dono: " + getDono().getNome() + ")");
+        } else {
+            System.out.print(" (Sem dono)");
+        }
     }
 }

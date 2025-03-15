@@ -12,4 +12,6 @@ public abstract class Espaco {
     }
 
     public abstract void acao(Jogador jogador, Scanner scanner);
+
+    public abstract void exibirInformacoes();
 }

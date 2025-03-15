@@ -10,4 +10,9 @@ public class Inicio extends Espaco {
         System.out.println(jogador.getNome() + " passou pelo início e recebeu $200!");
         jogador.receber(200);
     }
+
+    @Override
+    public void exibirInformacoes() {
+        System.out.print("Início: " + getNome() + " (Bônus: $200)");
+    }
 }

@@ -24,7 +24,7 @@ public class Propriedade extends Espaco implements Compravel, Alugavel {
             }
         } else if (dono != jogador) {
             int aluguel = calcularAluguel(jogador);
-            System.out.println(jogador.getNome() + ", você deve pagar $" + aluguel + " de aluguel para " + dono.getNome() + ".");
+            System.out.println(jogador.getNome() + ", você pagou $" + aluguel + " de aluguel para " + dono.getNome() + ".");
             jogador.pagar(aluguel);
             dono.receber(aluguel);
         }
@@ -55,5 +55,20 @@ public class Propriedade extends Espaco implements Compravel, Alugavel {
 
     public String getGrupoCor() {
         return grupoCor;
+    }
+
+    @Override
+    public void exibirInformacoes() {
+        System.out.print("Propriedade: " + getNome());
+        if (getDono() != null) {
+            System.out.print(" (Dono: " + getDono().getNome() + ")");
+        } else {
+            System.out.print(" (Sem dono)");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return getNome() + " (Preço: $" + preco + ", Aluguel Base: $" + aluguelBase + ", Grupo: " + grupoCor + ")";
     }
 }

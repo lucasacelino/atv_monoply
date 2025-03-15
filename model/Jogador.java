@@ -134,6 +134,11 @@ public class Jogador {
         this.ultimoValorDados = ultimoValorDados;
     }
 
+    public void irParaPrisao() {
+        this.posicao = 10; 
+        System.out.println(this.nome + " foi movido para a prisão.");
+    }
+
     @Override
     public String toString() {
         return "Jogador{" +
